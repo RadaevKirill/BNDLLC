@@ -1,0 +1,26 @@
+runner:
+  _target_: src.__main__.Runner
+  decoder:
+    _target_: src.decoders.opencv_decoder.OpenCVDecoder
+    video_path: ${ASSETS_DIR:video/crowd.mp4}
+  detector: ${yolo_v10_n}
+  painter:
+    _target_: src.painters.opencv_painter.OpenCVPainter
+  saver:
+    _target_: src.savers.opencv_video_saver.OpenCVVideoSaver
+    target_file: ${ASSETS_DIR:video/output.mp4}  # TODO Добавить в имя выходного файла название модели.
+    fps: 24
+    width: 1920
+    height: 1080
+
+
+yolo_v10_n:
+  _target_: src.detectors.yolo_detector.YoloDetector
+  model_path: ${ASSETS_DIR:models/yolo-v10-n/yolov10n.pt}
+
+openvino_0202:
+  _target_: src.detectors.openvino_detector.OpenVINODetector
+  model_path: ${ASSETS_DIR:models/person-detection-0202/FP16/person-detection-0202.xml}
+  width: 1920
+  height: 1080
+  score_threshold: 0.5
