@@ -27,9 +27,9 @@ class YoloDetector(Detector):
                 continue
             detection_results.append(DetectionResult(label=c, score=s, bbox=b))
 
-        logging.info(f'preprocess: {results.speed['preprocess']}')
-        logging.info(f'inference: {results.speed['inference']}')
-        logging.info(f'postprocess: {results.speed['postprocess']}')
+        logging.info(f'preprocess: {results.speed["preprocess"]}')
+        logging.info(f'inference: {results.speed["inference"]}')
+        logging.info(f'postprocess: {results.speed["postprocess"]}')
 
         return detection_results
 
